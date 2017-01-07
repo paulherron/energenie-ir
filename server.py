@@ -31,7 +31,7 @@ def update_status(status):
 
 def get_status():
     with open(status_file_path, 'r') as status_file:
-        return jsonify(status_file.read())
+        return Response(status_file.read(), mimetype='application/json')
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0')
