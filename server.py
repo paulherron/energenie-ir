@@ -15,14 +15,26 @@ def status():
 
 @app.route('/down')
 def down():
-    os.system('irsend SEND_ONCE velux KEY_DOWN --count=10')
+    os.system('irsend SEND_ONCE Lutron_MaestroIR DOWN')
     update_status('down')
     return get_status()
 
 @app.route('/up')
 def up():
-    os.system('irsend SEND_ONCE velux KEY_UP --count=10')
+    os.system('irsend SEND_ONCE Lutron_MaestroIR UP')
     update_status('up')
+    return get_status()
+
+@app.route('/on')
+def on():
+    os.system('irsend SEND_ONCE Lutron_MaestroIR ON')
+    update_status('on')
+    return get_status()
+
+@app.route('/off')
+def off():
+    os.system('irsend SEND_ONCE Lutron_MaestroIR OFF')
+    update_status('off')
     return get_status()
 
 def update_status(status):
