@@ -15,13 +15,13 @@ def status():
 
 @app.route('/down')
 def down():
-    os.system('irsend SEND_ONCE Lutron_MaestroIR DOWN')
+    os.system('irsend SEND_ONCE Lutron_MaestroIR DOWN --count=5')
     update_status('down')
     return get_status()
 
 @app.route('/up')
 def up():
-    os.system('irsend SEND_ONCE Lutron_MaestroIR UP')
+    os.system('irsend SEND_ONCE Lutron_MaestroIR UP --count=5')
     update_status('up')
     return get_status()
 
