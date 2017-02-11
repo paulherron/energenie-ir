@@ -39,6 +39,28 @@ Run
 	cd /home/pi/ir-remote
 	python ./server.py
 
+To make the server run persistently (e.g. after a reboot), Supervisor can be used:
+
+	sudo apt-get install supervisor
+	cd /etc/supervisor/conf.d
+	sudo vim ir-remote.conf
+
+Enter the following and save the file:
+
+	[program:ir-remote]
+	command=/usr/bin/python /home/pi/ir-remote/server.py
+	directory=/home/pi/ir-remote
+	redirect_stderr=true
+	startsecs=5
+	autorestart=true
+	stdout_logfile=/var/log/ir-remote.stdout.log
+	
+Then update Supervisor:
+
+	sudo service supervisor start
+	sudo supervisorctl update
+	sudo supervisorctl status
+
 
 Use
 ===
